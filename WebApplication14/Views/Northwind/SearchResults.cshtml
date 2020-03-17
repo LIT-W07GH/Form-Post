@@ -1,0 +1,47 @@
+﻿@using WebApplication14.Models
+@model SearchProductsViewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SearchResults</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container" style="margin-top: 40px;">
+    <form action="/northwind/searchresults">
+        <div class="row">
+            <div class="col-md-4">
+                <input value="@Model.MinStock" type="text" class="form-control" name="minstock" placeholder="Min Stock" />
+            </div>
+            <div class="col-md-4">
+                <input value="@Model.MaxStock" type="text" class="form-control" name="maxstock" placeholder="Max Stock" />
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary btn-block">Search</button>
+            </div>
+        </div>
+    </form>
+    <table class="table table-hover table-striped table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Units In Stock</th>
+            <th>Quantity Per Unit</th>
+        </tr>
+        @foreach (Product product in Model.Products)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Price.ToString("C")</td>
+                <td>@product.UnitsInStock</td>
+                <td>@product.QuantityPerUnit</td>
+            </tr>
+        }
+    </table>
+</div>
+</body>
+</html>
