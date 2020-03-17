@@ -16,6 +16,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Age</th>
+            <th>Delete</th>
         </tr>
         @foreach (Person person in Model)
         {
@@ -23,6 +24,14 @@
                 <td>@person.FirstName</td>
                 <td>@person.LastName</td>
                 <td>@person.Age</td>
+                <td>
+                    <form method="post" action="/postdemo/delete">
+                        <input type="hidden" name="id" value="@person.Id"/>
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+
+                    
+                </td>
             </tr>
         }
     </table>

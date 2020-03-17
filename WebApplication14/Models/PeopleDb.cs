@@ -53,5 +53,17 @@ namespace WebApplication14.Models
             connection.Close();
             connection.Dispose();
         }
+
+        public void Delete(int id)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "DELETE FROM People WHERE Id = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            connection.Dispose();
+        }
     }
 }
