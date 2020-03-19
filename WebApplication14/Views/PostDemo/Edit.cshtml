@@ -1,0 +1,31 @@
+﻿@using WebApplication14.Models
+@model Person
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowForm</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container" style="margin-top: 60px;">
+    <form method="post" action="/postdemo/update">
+        <div class="row well">
+            <div class="col-md-6 col-md-offset-3">
+                <input type="text" placeholder="First Name" value="@Model.FirstName" name="firstname" class="form-control" />
+                <br />
+                <input type="text" placeholder="Last Name" value="@Model.LastName" name="lastname" class="form-control" />
+                <br />
+
+                <input type="text" placeholder="Age" value="@Model.Age" name="age" class="form-control" />
+                <br />
+                <input type="hidden" name="id" value="@Model.Id"/>
+                <button class="btn btn-danger">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.ExpressionTranslators;
 using WebApplication14.Models;
 
 namespace WebApplication14.Controllers
@@ -41,6 +42,26 @@ namespace WebApplication14.Controllers
         {
             PeopleDb db = new PeopleDb(_connectionString);
             db.Delete(id);
+            return Redirect("/postdemo/showpeople");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            PeopleDb db = new PeopleDb(_connectionString);
+            Person person = db.GetPerson(id);
+            if (person == null)
+            {
+                return Redirect("/postdemo/showpeople");
+            }
+
+            return View(person);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Person person)
+        {
+            PeopleDb db = new PeopleDb(_connectionString);
+            db.Update(person);
             return Redirect("/postdemo/showpeople");
         }
     }
